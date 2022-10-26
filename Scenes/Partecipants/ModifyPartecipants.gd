@@ -54,19 +54,14 @@ func _process(_delta):
 		$ModifyPartecipantFormButtons/ConfirmPartecipantButton.disabled = true
 
 func setCurrentPartecipantImage(path):
+	return
 	var dir = Directory.new()
-	var newImage = Image.new()
-	var textureFromImage = ImageTexture.new()
-	var error = newImage.load(path)
-	if error != OK:
-		print("Error on load image")
-		return
-	error = dir.copy(path, "user://_tmp/user_image." + path.get_extension())
+	var error = dir.copy(path, "user://_tmp/user_image." + path.get_extension())
 	if error != OK:
 		print("Error on save image copy")
 		return
 	tmpImagePath = "user://_tmp/user_image." + path.get_extension()
-	textureFromImage.create_from_image(newImage)
+	var textureFromImage = load(path)
 	$PartecipantPictureDisplay.set_texture(textureFromImage)
 	imageIsSet = true
 
@@ -135,7 +130,7 @@ func resetPartecipantData():
 	else:
 		imageIsSet = false
 		tmpImagePath = ""
-		$PartecipantPictureDisplay.set_texture(load("res://Assets/Images/default_avatar.png"))
+		#$PartecipantPictureDisplay.set_texture(load("res://Assets/Images/default_avatar.png"))
 	$NameInput.text = currentPartecipantData.name
 	nameIsSet = true
 
@@ -148,7 +143,7 @@ func clearPartecipantData():
 	tmpImagePath = ""
 	$NameInput.text = ""
 	$ModifyPartecipantAudioStream.stream = null
-	$PartecipantPictureDisplay.set_texture(load("res://Assets/Images/default_avatar.png"))
+	#$PartecipantPictureDisplay.set_texture(load("res://Assets/Images/default_avatar.png"))
 	dir.remove("user://_tmp/user_image.jpg")
 	dir.remove("user://_tmp/user_audio.ogg")
 
@@ -163,7 +158,7 @@ func _on_RemovePictureButton_pressed():
 	var dir = Directory.new()
 	imageIsSet = false
 	tmpImagePath = ""
-	$PartecipantPictureDisplay.set_texture(load("res://Assets/Images/default_avatar.png"))
+	#$PartecipantPictureDisplay.set_texture(load("res://Assets/Images/default_avatar.png"))
 	dir.remove("user://_tmp/user_image.jpg")
 
 func _on_ResetPartecipantButton_pressed():

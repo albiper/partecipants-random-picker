@@ -114,23 +114,13 @@ func onAddEditPartecipant(newUserName, hasPicture, tmpImagePath, hasAudio, tmpAu
 
 func addToPartecipantsList(partecipantObject):
 	var partecipantImage = Image.new()
-	var textureFromImage = ImageTexture.new()
-	var error = partecipantImage.load(partecipantObject.image_path)
-	if error != OK:
-		print("Error on load image")
-		return
-	textureFromImage.create_from_image(partecipantImage)
+	var textureFromImage = load(partecipantObject.image_path)
 	$PartecipantsList.add_item(partecipantObject.name, textureFromImage, true)
 	$PartecipantsList.set_item_metadata($PartecipantsList.get_item_count() - 1, partecipantObject)
 
 func editPartecipantOnList(partecipantObject, partecipantIndex):
 	var partecipantImage = Image.new()
-	var textureFromImage = ImageTexture.new()
-	var error = partecipantImage.load(partecipantObject.image_path)
-	if error != OK:
-		print("Update partecipants list: Error on load image")
-		$partecipantImage.load("res://Assets/Images/default_avatar.png")
-	textureFromImage.create_from_image(partecipantImage)
+	var textureFromImage = load(partecipantObject.image_path)
 	$PartecipantsList.set_item_text(partecipantIndex, partecipantObject.name)
 	$PartecipantsList.set_item_icon(partecipantIndex, textureFromImage)
 	$PartecipantsList.set_item_metadata(partecipantIndex, partecipantObject)
@@ -189,12 +179,7 @@ func _on_PartecipantsList_item_selected(index = -1, forced = false):
 		$ShowPartecipantContainer/LabelShowPartecipant.text = currentPartecipantData.name
 		# Load partecipant image in preview
 		newImage = Image.new()
-		textureFromImage = ImageTexture.new()
-		error = newImage.load(currentPartecipantData.image_path)
-		if error != OK:
-			print("Error on load image")
-			return
-		textureFromImage.create_from_image(newImage)
+		textureFromImage = load(currentPartecipantData.image_path)
 		$ShowPartecipantContainer/ShowPartecipantPicture.set_texture(textureFromImage)
 		# Load partecipant audio in preview
 		if (currentPartecipantData.has_audio):

@@ -1,0 +1,9 @@
+[gd_scene format=2]
+
+[node name="Test" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -2166.0
+margin_top = -1571.0
+margin_right = 3164.0
+margin_bottom = 2081.0

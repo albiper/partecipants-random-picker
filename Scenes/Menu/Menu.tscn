@@ -50,9 +50,6 @@ custom_colors/font_color_pressed = Color( 0, 0.607843, 0.6, 1 )
 custom_fonts/font = ExtResource( 3 )
 text = "Iniziare Meeting"
 flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Control" type="Control" parent="StartMeetingButton"]
 margin_right = 40.0
